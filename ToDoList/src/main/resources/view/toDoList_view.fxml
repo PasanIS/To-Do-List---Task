@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.ToDoListController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="447.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ToDoListController">
+    <Label layoutX="30.0" layoutY="27.0" text="My Day">
+        <font>
+          <Font name="System Bold" size="18.0" />
+        </font>
+    </Label>
+    <Label fx:id="lbl_currentDate" layoutX="30.0" layoutY="58.0" prefHeight="18.0" prefWidth="98.0" />
+    <ListView fx:id="todoListView" layoutX="30.0" layoutY="90.0" prefHeight="200.0" prefWidth="339.0" />
+    <TextArea fx:id="txt_AddTask" layoutX="30.0" layoutY="309.0" prefHeight="68.0" prefWidth="339.0" promptText="Add Task to My Day . . ." />
+    <Button layoutX="290.0" layoutY="387.0" mnemonicParsing="false" onAction="#btn_AddOnAction" prefHeight="26.0" prefWidth="78.0" text="Add" />
+    <Label layoutX="406.0" layoutY="27.0" text="Completed">
+        <font>
+          <Font name="System Bold" size="18.0" />
+        </font>
+    </Label>
+    <DatePicker fx:id="taskDatePicker" layoutX="30.0" layoutY="387.0" prefHeight="26.0" prefWidth="238.0" />
+   <TableView layoutX="406.0" layoutY="90.0" prefHeight="200.0" prefWidth="328.0">
+     <columns>
+       <TableColumn prefWidth="75.0" text="C1" />
+       <TableColumn prefWidth="75.0" text="C2" />
+     </columns>
+   </TableView>
+   <Button layoutX="384.0" layoutY="309.0" mnemonicParsing="false" onAction="#btn_RemoveOnAction" prefHeight="26.0" prefWidth="78.0" text="Remove" />
+   <Button layoutX="384.0" layoutY="350.0" mnemonicParsing="false" onAction="#btn_UpdateOnAction" prefHeight="26.0" prefWidth="78.0" text="Update" />
 </AnchorPane>
