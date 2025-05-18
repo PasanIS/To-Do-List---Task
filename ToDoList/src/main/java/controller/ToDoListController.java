@@ -1,6 +1,7 @@
 package controller;
 
 
+import dataAccessObject.ToDoDAO;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import model.ToDoItem;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -55,10 +57,22 @@ public class ToDoListController {
         newItem.setDate(java.sql.Date.valueOf(date));
         newItem.setDone(false);
 
-        todoListView.getItems().add(newItem);
+        ToDoDAO dao = new ToDoDAO();
+        try {
+            dao.insertToDo(newItem);
+            // Add to list view after successful DB insert
+            todoListView.getItems().add(newItem);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Database Error");
+            alert.setHeaderText("Failed to save task");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+
         txt_AddTask.clear();
         taskDatePicker.setValue(null);
-
     }
 
     @FXML
